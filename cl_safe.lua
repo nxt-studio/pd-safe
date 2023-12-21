@@ -2,7 +2,7 @@ _onSpot = false
 isMinigame = false
 _SafeCrackingStates = "Setup"
 
-function createSafe(combination)
+function createSafe(combination, disableAnimation)
 	local res
 	isMinigame = not isMinigame
 	RequestStreamedTextureDict("MPSafeCracking",false)
@@ -11,7 +11,9 @@ function createSafe(combination)
 	if isMinigame then
 		InitializeSafe(combination)
 		while isMinigame do
-			playFx("mini@safe_cracking","idle_base")
+			if not disableAnimation then
+				playFx("mini@safe_cracking","idle_base")
+			end
 			DrawSprites(true)
 			res = RunMiniGame()
 
